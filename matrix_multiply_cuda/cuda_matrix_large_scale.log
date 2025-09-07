@@ -1,0 +1,572 @@
+=========================================
+Run started: 2025-09-07 00:09:15
+Folder: matrix_multiply_cuda
+Command: make clean && make && ./matrix_multiply_configurable 16 4 1024 1024 1024
+Host: m@10.147.17.77
+=========================================
+Cleaning up...
+rm -f matrix_multiply_configurable
+rm -f matrix_*.txt
+rm -f small_matrix_*.txt
+rm -f medium_matrix_*.txt
+rm -f large_matrix_*.txt
+rm -f rect_matrix_*.txt
+rm -f stress_matrix_*.txt
+rm -f current_config.txt
+rm -f *.config
+Clean complete!
+Compiling configurable parallel matrix multiplication with CUDA...
+nvcc -O3 -Xcompiler -fopenmp matrix_multiply_configurable.cu -o matrix_multiply_configurable
+Build successful!
+
+Usage Examples:
+  ./matrix_multiply_configurable                              # Default config
+  ./matrix_multiply_configurable 8 2 512 1024 256            # Custom: 8 tasks, 2 GPUs, dimensions
+  ./matrix_multiply_configurable --preset small               # Small matrices preset
+  ./matrix_multiply_configurable --preset large               # Large matrices preset
+  ./matrix_multiply_configurable --config my_config.txt       # Load from file
+  ./matrix_multiply_configurable --random 64 1024 16 4        # Random dims 64-1024, 16 tasks, 4 GPUs
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417490: GPU 1 handling task 1
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417491: GPU 0 handling task 2
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417489: GPU 0 handling task 0
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417492: GPU 1 handling task 3
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417493: GPU 0 handling task 4
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417494: GPU 1 handling task 5
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417495: GPU 0 handling task 6
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417496: GPU 1 handling task 7
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417497: GPU 0 handling task 8
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417498: GPU 1 handling task 9
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417499: GPU 0 handling task 10
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417500: GPU 1 handling task 11
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417501: GPU 0 handling task 12
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417502: GPU 1 handling task 13
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417503: GPU 0 handling task 14
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 417504: GPU 1 handling task 15
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Task 0 completed
+Task 1 completed
+Task 2 completed
+Task 3 completed
+Task 4 completed
+Task 5 completed
+Task 6 completed
+Task 7 completed
+Task 8 completed
+Task 9 completed
+Task 10 completed
+Task 11 completed
+Task 12 completed
+Task 13 completed
+Task 14 completed
+Task 15 completed
+
+All matrix multiplication tasks completed successfully!
+Generated files: matrix_*.txt
+
+========================================
+
+=========================================
+Run started: 2025-09-07 00:09:41
+Folder: matrix_multiply_cuda
+Command: make clean && make && ./matrix_multiply_configurable 16 4 1024 1024 1024
+Host: m@10.147.17.77
+=========================================
+Cleaning up...
+rm -f matrix_multiply_configurable
+rm -f matrix_*.txt
+rm -f small_matrix_*.txt
+rm -f medium_matrix_*.txt
+rm -f large_matrix_*.txt
+rm -f rect_matrix_*.txt
+rm -f stress_matrix_*.txt
+rm -f current_config.txt
+rm -f *.config
+Clean complete!
+Compiling configurable parallel matrix multiplication with CUDA...
+nvcc -O3 -Xcompiler -fopenmp matrix_multiply_configurable.cu -o matrix_multiply_configurable
+Build successful!
+
+Usage Examples:
+  ./matrix_multiply_configurable                              # Default config
+  ./matrix_multiply_configurable 8 2 512 1024 256            # Custom: 8 tasks, 2 GPUs, dimensions
+  ./matrix_multiply_configurable --preset small               # Small matrices preset
+  ./matrix_multiply_configurable --preset large               # Large matrices preset
+  ./matrix_multiply_configurable --config my_config.txt       # Load from file
+  ./matrix_multiply_configurable --random 64 1024 16 4        # Random dims 64-1024, 16 tasks, 4 GPUs
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418050: GPU 0 handling task 0
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418051: GPU 1 handling task 1
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418052: GPU 0 handling task 2
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418053: GPU 1 handling task 3
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418054: GPU 0 handling task 4
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418055: GPU 1 handling task 5
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418056: GPU 0 handling task 6
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418057: GPU 1 handling task 7
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418058: GPU 0 handling task 8
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418059: GPU 1 handling task 9
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418060: GPU 0 handling task 10
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418062: GPU 0 handling task 12
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418061: GPU 1 handling task 11
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418063: GPU 1 handling task 13
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418064: GPU 0 handling task 14
+CUDA error in matrix_multiply_configurable.cu at line 284: initialization error
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418065: GPU 1 handling task 15
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Task 0 completed
+Task 1 completed
+Task 2 completed
+Task 3 completed
+Task 4 completed
+Task 5 completed
+Task 6 completed
+Task 7 completed
+Task 8 completed
+Task 9 completed
+Task 10 completed
+Task 11 completed
+Task 12 completed
+Task 13 completed
+Task 14 completed
+Task 15 completed
+
+All matrix multiplication tasks completed successfully!
+Generated files: matrix_*.txt
+
+========================================
+
