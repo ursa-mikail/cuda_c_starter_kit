@@ -1,0 +1,494 @@
+=========================================
+Run started: 2025-09-07 00:14:51
+Folder: matrix_multiply_cuda
+Command: make clean && make && ./matrix_multiply_configurable 16 4 1024 1024 1024
+Host: m@10.147.17.77
+=========================================
+Cleaning up...
+rm -f matrix_multiply_configurable
+rm -f matrix_*.txt
+rm -f small_matrix_*.txt
+rm -f medium_matrix_*.txt
+rm -f large_matrix_*.txt
+rm -f rect_matrix_*.txt
+rm -f stress_matrix_*.txt
+rm -f current_config.txt
+rm -f *.config
+Clean complete!
+Compiling configurable parallel matrix multiplication with CUDA...
+nvcc -O3 -Xcompiler -fopenmp matrix_multiply_configurable.cu -o matrix_multiply_configurable
+Build successful!
+
+Usage Examples:
+  ./matrix_multiply_configurable                              # Default config
+  ./matrix_multiply_configurable 8 2 512 1024 256            # Custom: 8 tasks, 2 GPUs, dimensions
+  ./matrix_multiply_configurable --preset small               # Small matrices preset
+  ./matrix_multiply_configurable --preset large               # Large matrices preset
+  ./matrix_multiply_configurable --config my_config.txt       # Load from file
+  ./matrix_multiply_configurable --random 64 1024 16 4        # Random dims 64-1024, 16 tasks, 4 GPUs
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0 for multiplication
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1 for multiplication
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0 for multiplication
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1 for multiplication
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1 for multiplication
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0 for multiplication
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1 for multiplication
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0 for multiplication
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1 for multiplication
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0 for multiplication
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0 for multiplication
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1 for multiplication
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0 for multiplication
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1 for multiplication
+Failed to reset CUDA device 0: initialization error
+Failed to initialize CUDA device 0 for multiplication
+Failed to reset CUDA device 1: initialization error
+Failed to initialize CUDA device 1 for multiplication
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418924: GPU 0 handling task 2
+Falling back to CPU random generation for matrix_M_2.txt
+Matrix written to matrix_M_2.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_2.txt
+Matrix written to matrix_N_2.txt (1024x1024)
+GPU 0: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_2.txt (1024x1024)
+Process 418924: Completed task 2
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418927: GPU 1 handling task 5
+Falling back to CPU random generation for matrix_M_5.txt
+Matrix written to matrix_M_5.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_5.txt
+Matrix written to matrix_N_5.txt (1024x1024)
+GPU 1: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_5.txt (1024x1024)
+Process 418927: Completed task 5
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418926: GPU 0 handling task 4
+Falling back to CPU random generation for matrix_M_4.txt
+Matrix written to matrix_M_4.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_4.txt
+Matrix written to matrix_N_4.txt (1024x1024)
+GPU 0: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_4.txt (1024x1024)
+Process 418926: Completed task 4
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418928: GPU 0 handling task 6
+Falling back to CPU random generation for matrix_M_6.txt
+Matrix written to matrix_M_6.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_6.txt
+Matrix written to matrix_N_6.txt (1024x1024)
+GPU 0: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_6.txt (1024x1024)
+Process 418928: Completed task 6
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418937: GPU 1 handling task 15
+Falling back to CPU random generation for matrix_M_15.txt
+Matrix written to matrix_M_15.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_15.txt
+Matrix written to matrix_N_15.txt (1024x1024)
+GPU 1: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_15.txt (1024x1024)
+Process 418937: Completed task 15
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418933: GPU 1 handling task 11
+Falling back to CPU random generation for matrix_M_11.txt
+Matrix written to matrix_M_11.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_11.txt
+Matrix written to matrix_N_11.txt (1024x1024)
+GPU 1: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_11.txt (1024x1024)
+Process 418933: Completed task 11
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418935: GPU 1 handling task 13
+Falling back to CPU random generation for matrix_M_13.txt
+Matrix written to matrix_M_13.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_13.txt
+Matrix written to matrix_N_13.txt (1024x1024)
+GPU 1: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_13.txt (1024x1024)
+Process 418935: Completed task 13
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418934: GPU 0 handling task 12
+Falling back to CPU random generation for matrix_M_12.txt
+Matrix written to matrix_M_12.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_12.txt
+Matrix written to matrix_N_12.txt (1024x1024)
+GPU 0: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_12.txt (1024x1024)
+Process 418934: Completed task 12
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418936: GPU 0 handling task 14
+Falling back to CPU random generation for matrix_M_14.txt
+Matrix written to matrix_M_14.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_14.txt
+Matrix written to matrix_N_14.txt (1024x1024)
+GPU 0: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_14.txt (1024x1024)
+Process 418936: Completed task 14
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418932: GPU 0 handling task 10
+Falling back to CPU random generation for matrix_M_10.txt
+Matrix written to matrix_M_10.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_10.txt
+Matrix written to matrix_N_10.txt (1024x1024)
+GPU 0: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_10.txt (1024x1024)
+Process 418932: Completed task 10
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418929: GPU 1 handling task 7
+Falling back to CPU random generation for matrix_M_7.txt
+Matrix written to matrix_M_7.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_7.txt
+Matrix written to matrix_N_7.txt (1024x1024)
+GPU 1: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_7.txt (1024x1024)
+Process 418929: Completed task 7
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418925: GPU 1 handling task 3
+Falling back to CPU random generation for matrix_M_3.txt
+Matrix written to matrix_M_3.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_3.txt
+Matrix written to matrix_N_3.txt (1024x1024)
+GPU 1: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_3.txt (1024x1024)
+Process 418925: Completed task 3
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418923: GPU 1 handling task 1
+Falling back to CPU random generation for matrix_M_1.txt
+Matrix written to matrix_M_1.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_1.txt
+Matrix written to matrix_N_1.txt (1024x1024)
+GPU 1: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_1.txt (1024x1024)
+Process 418923: Completed task 1
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418922: GPU 0 handling task 0
+Falling back to CPU random generation for matrix_M_0.txt
+Matrix written to matrix_M_0.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_0.txt
+Matrix written to matrix_N_0.txt (1024x1024)
+GPU 0: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_0.txt (1024x1024)
+Process 418922: Completed task 0
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418930: GPU 0 handling task 8
+Falling back to CPU random generation for matrix_M_8.txt
+Matrix written to matrix_M_8.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_8.txt
+Matrix written to matrix_N_8.txt (1024x1024)
+GPU 0: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_8.txt (1024x1024)
+Process 418930: Completed task 8
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Process 418931: GPU 1 handling task 9
+Falling back to CPU random generation for matrix_M_9.txt
+Matrix written to matrix_M_9.txt (1024x1024)
+Falling back to CPU random generation for matrix_N_9.txt
+Matrix written to matrix_N_9.txt (1024x1024)
+GPU 1: Multiplying (1024x1024) x (1024x1024) = (1024x1024)
+Falling back to CPU multiplication
+Matrix written to matrix_P_9.txt (1024x1024)
+Process 418931: Completed task 9
+Matrix Configuration:
+  Matrix M: 1024 x 1024
+  Matrix N: 1024 x 1024
+  Result P: 1024 x 1024
+  Value range: [0.00, 100.00]
+  CUDA block size: 16 x 16
+  Tasks: 16, GPUs: 4
+  File prefix: matrix
+  Memory per task: 12.00 MB
+  Total memory (all tasks): 192.00 MB
+Configuration saved to current_config.txt
+Warning: Requested 4 GPUs but only 2 available. Using 2 GPUs.
+Task 0 completed with status 0
+Task 1 completed with status 0
+Task 2 completed with status 0
+Task 3 completed with status 0
+Task 4 completed with status 0
+Task 5 completed with status 0
+Task 6 completed with status 0
+Task 7 completed with status 0
+Task 8 completed with status 0
+Task 9 completed with status 0
+Task 10 completed with status 0
+Task 11 completed with status 0
+Task 12 completed with status 0
+Task 13 completed with status 0
+Task 14 completed with status 0
+Task 15 completed with status 0
+
+All matrix multiplication tasks completed!
+Generated files: matrix_*.txt
+
+========================================
+

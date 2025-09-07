@@ -10,14 +10,62 @@
 #include <string.h>
 #include "matrix_config.h"
 
-// CUDA error checking macro
+// CUDA error checking macro with better error handling
 #define CUDA_CHECK(call) { \
     cudaError_t err = call; \
     if (err != cudaSuccess) { \
         fprintf(stderr, "CUDA error in %s at line %d: %s\n", \
                 __FILE__, __LINE__, cudaGetErrorString(err)); \
+        fprintf(stderr, "Error code: %d\n", err); \
+        if (err == cudaErrorInitializationError) { \
+            fprintf(stderr, "CUDA initialization failed. Check GPU availability and driver.\n"); \
+        } \
         exit(EXIT_FAILURE); \
     } \
+}
+
+// Safe CUDA initialization
+int init_cuda_device(int gpu_id) {
+    int device_count;
+    cudaError_t err = cudaGetDeviceCount(&device_count);
+    if (err != cudaSuccess) {
+        fprintf(stderr, "Failed to get CUDA device count: %s\n", cudaGetErrorString(err));
+        return 0;
+    }
+    
+    if (device_count == 0) {
+        fprintf(stderr, "No CUDA devices available\n");
+        return 0;
+    }
+    
+    if (gpu_id >= device_count) {
+        fprintf(stderr, "GPU %d not available (only %d GPUs found)\n", gpu_id, device_count);
+        return 0;
+    }
+    
+    // Reset device first
+    err = cudaDeviceReset();
+    if (err != cudaSuccess) {
+        fprintf(stderr, "Failed to reset CUDA device %d: %s\n", gpu_id, cudaGetErrorString(err));
+        return 0;
+    }
+    
+    // Set device
+    err = cudaSetDevice(gpu_id);
+    if (err != cudaSuccess) {
+        fprintf(stderr, "Failed to set CUDA device %d: %s\n", gpu_id, cudaGetErrorString(err));
+        return 0;
+    }
+    
+    // Initialize device context
+    err = cudaFree(0);
+    if (err != cudaSuccess) {
+        fprintf(stderr, "Failed to initialize CUDA context on device %d: %s\n", gpu_id, cudaGetErrorString(err));
+        return 0;
+    }
+    
+    printf("Successfully initialized CUDA device %d\n", gpu_id);
+    return 1;
 }
 
 // Kernel to generate random matrix elements
@@ -280,8 +328,19 @@ void generate_or_load_matrix(const char *filename, float **matrix, int *rows, in
     *cols = desired_cols;
     *matrix = (float*)malloc((*rows) * (*cols) * sizeof(float));
     
-    // Set GPU device
-    CUDA_CHECK(cudaSetDevice(gpu_id));
+    // Initialize CUDA device safely
+    if (!init_cuda_device(gpu_id)) {
+        fprintf(stderr, "Failed to initialize CUDA device %d\n", gpu_id);
+        // Fall back to CPU random generation
+        printf("Falling back to CPU random generation for %s\n", filename);
+        srand(seed);
+        for (int i = 0; i < (*rows) * (*cols); i++) {
+            float range = config->max_value - config->min_value;
+            (*matrix)[i] = config->min_value + ((float)rand() / RAND_MAX) * range;
+        }
+        write_matrix_to_file(filename, *matrix, *rows, *cols);
+        return;
+    }
     
     // Allocate device memory
     float *d_matrix;
@@ -317,8 +376,22 @@ void multiply_matrices_cuda(float *h_M, float *h_N, float *h_P,
            config->N_rows, config->N_cols, 
            config->P_rows, config->P_cols);
     
-    // Set GPU device
-    CUDA_CHECK(cudaSetDevice(gpu_id));
+    // Initialize CUDA device safely
+    if (!init_cuda_device(gpu_id)) {
+        fprintf(stderr, "Failed to initialize CUDA device %d for multiplication\n", gpu_id);
+        // Fall back to CPU multiplication (naive implementation)
+        printf("Falling back to CPU multiplication\n");
+        for (int i = 0; i < config->M_rows; i++) {
+            for (int j = 0; j < config->N_cols; j++) {
+                float sum = 0.0f;
+                for (int k = 0; k < config->M_cols; k++) {
+                    sum += h_M[i * config->M_cols + k] * h_N[k * config->N_cols + j];
+                }
+                h_P[i * config->N_cols + j] = sum;
+            }
+        }
+        return;
+    }
     
     // Allocate device memory
     float *d_M, *d_N, *d_P;
@@ -444,10 +517,14 @@ int main(int argc, char *argv[]) {
     // Save current configuration
     save_config_to_file(&config, "current_config.txt");
     
-    // Check available GPUs
-    int device_count;
-    CUDA_CHECK(cudaGetDeviceCount(&device_count));
-    if (device_count < config.num_gpus) {
+    // Check available GPUs (don't exit on failure, just warn)
+    int device_count = 0;
+    cudaError_t err = cudaGetDeviceCount(&device_count);
+    if (err != cudaSuccess || device_count == 0) {
+        printf("Warning: No CUDA devices available or CUDA initialization failed.\n");
+        printf("Will fall back to CPU computation.\n");
+        config.num_gpus = 1; // Still need at least one "GPU slot" for CPU fallback
+    } else if (device_count < config.num_gpus) {
         printf("Warning: Requested %d GPUs but only %d available. Using %d GPUs.\n", 
                config.num_gpus, device_count, device_count);
         config.num_gpus = device_count;
@@ -483,12 +560,12 @@ int main(int argc, char *argv[]) {
     while (task_id < config.num_tasks) {
         int status;
         waitpid(child_pids[task_id], &status, 0);
-        printf("Task %d completed\n", task_id);
+        printf("Task %d completed with status %d\n", task_id, status);
         task_id++;
     }
     
     free(child_pids);
-    printf("\nAll matrix multiplication tasks completed successfully!\n");
+    printf("\nAll matrix multiplication tasks completed!\n");
     printf("Generated files: %s_*.txt\n", config.file_prefix);
     
     return 0;
