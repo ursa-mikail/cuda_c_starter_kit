@@ -1,5 +1,6 @@
 CC=nvcc
 CFLAGS=-O3 -Xcompiler -fopenmp
+#CFLAGS=-O3 -arch=sm_50	# 35, 50, 52, 60
 LIBS=-lgmp
 TARGET=matrix_multiply_configurable
 SOURCE=matrix_multiply_configurable.cu
