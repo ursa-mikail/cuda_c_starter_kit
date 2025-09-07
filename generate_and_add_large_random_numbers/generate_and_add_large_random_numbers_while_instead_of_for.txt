@@ -1,0 +1,156 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <time.h>
+#include <gmp.h>
+#include <cuda_runtime.h>
+#include <curand_kernel.h>
+#include <omp.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+#define BITS 4000
+#define LIMBS (BITS/32)
+
+// CUDA kernel remains the same
+__global__ void generate_random_numbers(uint32_t *output, int num_numbers, unsigned long long seed) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    if (idx < num_numbers) {
+        curandState state;
+        curand_init(seed, idx, 0, &state);
+        
+        uint32_t *my_output = output + idx * LIMBS;
+        for (int i = 0; i < LIMBS; i++) {
+            my_output[i] = curand(&state);
+        }
+        
+        my_output[LIMBS-1] |= 0x80000000;
+        my_output[0] |= 1;
+    }
+}
+
+// Function to read previous number from file
+int read_previous_number(const char *filename, mpz_t previous) {
+    FILE *file = fopen(filename, "r");
+    if (!file) {
+        mpz_set_ui(previous, 0);  // If file doesn't exist, start with 0
+        return 0;
+    }
+    
+    if (mpz_inp_str(previous, file, 10) == 0) {
+        mpz_set_ui(previous, 0);
+        fclose(file);
+        return 0;
+    }
+    
+    fclose(file);
+    return 1;
+}
+
+// Function to write number to file
+void write_number_to_file(const char *filename, mpz_t number) {
+    FILE *file = fopen(filename, "w");
+    if (file) {
+        mpz_out_str(file, 10, number);
+        fprintf(file, "\n");
+        fclose(file);
+    }
+}
+
+// Process function for handling one file
+void process_file(int file_id, int gpu_id, int total_gpus, unsigned long long base_seed) {
+    char filename[256];
+    snprintf(filename, sizeof(filename), "random_numbers_%d.txt", file_id);
+    
+    printf("Process %d: Using GPU %d for file %s\n", getpid(), gpu_id, filename);
+    
+    // Set GPU for this process
+    cudaSetDevice(gpu_id);
+    
+    // Read previous number
+    mpz_t previous_number, new_number;
+    mpz_init(previous_number);
+    mpz_init(new_number);
+    
+    read_previous_number(filename, previous_number);
+    
+    // Generate new random number on GPU
+    uint32_t *dev_numbers, *host_numbers;
+    host_numbers = (uint32_t*)malloc(LIMBS * sizeof(uint32_t));
+    cudaMalloc(&dev_numbers, LIMBS * sizeof(uint32_t));
+    
+    // Launch kernel for single number generation
+    int threadsPerBlock = 256;
+    int blocksPerGrid = 1;
+    generate_random_numbers<<<blocksPerGrid, threadsPerBlock>>>(
+        dev_numbers, 1, base_seed + file_id);
+    
+    cudaDeviceSynchronize();
+    cudaMemcpy(host_numbers, dev_numbers, LIMBS * sizeof(uint32_t), cudaMemcpyDeviceToHost);
+    
+    // Convert to GMP and add to previous
+    mpz_import(new_number, LIMBS, -1, sizeof(uint32_t), 0, 0, host_numbers);
+    mpz_add(new_number, new_number, previous_number);
+    
+    // Write back to file
+    write_number_to_file(filename, new_number);
+    
+    // Cleanup
+    cudaFree(dev_numbers);
+    free(host_numbers);
+    mpz_clear(previous_number);
+    mpz_clear(new_number);
+}
+
+int main(int argc, char *argv[]) {
+    int num_files = 10;           // Number of files to process
+    int num_gpus = 1;             // Number of GPUs to use
+    
+    if (argc > 1) num_files = atoi(argv[1]);
+    if (argc > 2) num_gpus = atoi(argv[2]);
+    
+    printf("Processing %d files using %d GPUs in parallel\n", num_files, num_gpus);
+    
+    unsigned long long base_seed = time(NULL);
+    
+    // Method 1: Fork processes (true parallelism)
+    pid_t *child_pids = malloc(num_files * sizeof(pid_t));
+    
+    int i = 0;
+    while (i < num_files) {
+        child_pids[i] = fork();
+        
+        if (child_pids[i] == 0) {
+            // Child process
+            int gpu_id = i % num_gpus;
+            process_file(i, gpu_id, num_gpus, base_seed);
+            exit(0);
+        } else if (child_pids[i] < 0) {
+            fprintf(stderr, "Fork failed for file %d\n", i);
+            exit(1);
+        }
+        i++;
+    }
+    
+    // Wait for all children to complete
+    i = 0;
+    while (i < num_files) {
+        int status;
+        waitpid(child_pids[i], &status, 0);
+        printf("File %d processing completed\n", i);
+        i++;
+    }
+    
+    free(child_pids);
+    printf("All files processed successfully!\n");
+    
+    return 0;
+}
+
+/*
+Compilation:
+nvcc -O3 -Xcompiler -fopenmp parallel_file_random.cu -o parallel_file_random -lgmp
+
+Usage:
+./parallel_file_random 20 4    # 20 files, 4 GPUs
+*/
