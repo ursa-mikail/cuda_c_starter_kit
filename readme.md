@@ -12,6 +12,8 @@ The logs will contain the complete output from your remote runs, making it easy 
 
 functions at: [shell_script_utility](https://github.com/ursa-mikail/shell_script_utility)
 in [dev_shell.sh](https://github.com/ursa-mikail/shell_script_utility/blob/main/scripts/utilities/dev_shell.sh)
+
+Ensure you set your access at: [config_secrets.sh](https://github.com/ursa-mikail/shell_script_utility/blob/main/scripts/config_secrets.sh)
 ```
 # Zip local folder and send it to remote
 function ssh_zip_folder_and_send() 
